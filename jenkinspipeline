@@ -7,20 +7,19 @@ node() {
         credentialsId: 'github-shakunss-a',
         url: 'https://github.com/shakunss-a/demorepo.git'
     }   
-    stage('Docker Create image') {
-       sh '''
-       docker build -t mywebsite .
-      sh '''
+    stage(' Create Docker image') {
+             sh '''
+                     docker build -t mywebsite .
+               '''
         
     }
-     stage('Docker run image') {
-       sh '''
-       docker run -d -p 9000:80 mywebsite
-       
-       sh '''
+     stage('Docker Run') {
+             sh '''
+                     docker run -d -p 9000:80 mywebsite
+                '''
      }
 
-    }
+}    
     stage('Deploy Code') {
         sh '''
         sudo cp /var/lib/jenkins/workspace/pipeline-deploy/* /var/www/html/.
