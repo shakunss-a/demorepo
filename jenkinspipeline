@@ -17,22 +17,10 @@ node() {
              sh '''
                      docker run -d -p 90:90 website
                 '''
-     }
-
-    
-    stage('Deploy Code') {
-        sh '''
-        sudo cp /var/lib/jenkins/workspace/pipeline-deploy/* /var/www/html/.
-        
-        '''
-    }    
+     }   
     stage("Sending mail") {
-       mail bcc: '',
-       body: 'Deployment has been done', 
-       cc: '', 
-       from: '', 
-       replyTo: '', 
-      subject: 'deployment finished', 
-       to: 'shakunsharma77@gmail.com' 
+       sh '''
+                echo "mail sent.... "
+          '''
     }
 }
