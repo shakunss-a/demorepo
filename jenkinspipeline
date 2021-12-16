@@ -3,20 +3,27 @@ node() {
             cleanWs()
         }
     stage('Pull Code') {
-       git branch: 'main',
-       credentialsId: 'github-shakunss-a', 
-       url: 'https://github.com/shakunss-a/demorepo.git'
+       git branch: 'main', 
+        credentialsId: 'github-shakunss-a',
+        url: 'https://github.com/shakunss-a/demorepo.git'
     }   
-    stage('Build') {
+    stage('Docker Create image') {
+       sh '''
+       docker build -t mywebsite .
+      sh '''
         
     }
-    stage('Artifactory archiving') {
-        
-        echo "archiving completed"
+     stage('Docker run image') {
+       sh '''
+       docker run -d -p 9000:80 mywebsite
+       
+       sh '''
+     }
+
     }
     stage('Deploy Code') {
         sh '''
-        sudo cp /var/lib/jenkins/workspace/jenkinspipeline/* /var/www/html/.
+        sudo cp /var/lib/jenkins/workspace/pipeline-deploy/* /var/www/html/.
         
         '''
     }    
@@ -26,7 +33,7 @@ node() {
        cc: '', 
        from: '', 
        replyTo: '', 
-       subject: 'deployment finished', 
+      subject: 'deployment finished', 
        to: 'shakunsharma77@gmail.com' 
     }
 }
