@@ -9,13 +9,13 @@ node() {
     }   
     stage(' Create Docker image') {
              sh '''
-                     docker build -t mywebsite .
+                     docker build -t website .
                '''
         
     }
      stage('Docker Run') {
              sh '''
-                     docker run -d -p 8090:80 mywebsite
+                     docker run -d -p 8000:80 website
                 '''
      }
 
