@@ -19,7 +19,7 @@ node() {
                 '''
      }
 
-}    
+    
     stage('Deploy Code') {
         sh '''
         sudo cp /var/lib/jenkins/workspace/pipeline-deploy/* /var/www/html/.
