@@ -15,7 +15,7 @@ node() {
     }
      stage('Docker Push') {
              sh '''
-                     aws ecr get-login --no include-email >> login.sh
+                     aws ecr get-login --no-include-email >> login.sh
                      chmod 772 login.sh
                      ./login.sh
                      
