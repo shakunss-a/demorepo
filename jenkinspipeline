@@ -13,9 +13,17 @@ node() {
                '''
         
     }
-     stage('Docker Run') {
+     stage('Docker Push') {
              sh '''
-                     docker run -d -p 8050:95 website
+                     aws ecr get-login --no include-email >> login.sh
+                     chmod 772 login.sh
+                     ./login.sh
+                     
+                     docker tag website:latest 128728817910.dkr.ecr.us-east-2.amazonaws.com/website:latest
+                     docker push 128728817910.dkr.ecr.us-east-2.amazonaws.com/website:latest
+                     
+                     rm login.sh
+                     
                 '''
      }   
     stage("Sending mail") {
