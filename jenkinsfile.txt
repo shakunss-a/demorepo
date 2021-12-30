@@ -1,0 +1,32 @@
+node() {
+        stage('Clean Workspace') {
+            cleanWs()
+        }
+    stage('Pull Code') {
+        git branch: 'main', 
+        credentialsId: '0414c5af-e6b4-4f60-9035-0551c12c1c42', 
+        url: 'https://github.com/shakunss-a/mywebsite.git'
+    }   
+    stage('Build') {
+        
+    }
+    stage('Artifactory archiving') {
+        
+        echo "archiving completed"
+    }
+    stage('Deploy Code') {
+        sh '''
+        sudo cp /var/lib/jenkins/workspace/jenkinspipeline/* /var/www/html/.
+        
+        '''
+    }    
+    stage("Sending mail") {
+       mail bcc: '',
+       body: 'Deployment has been done', 
+       cc: '', 
+       from: '', 
+       replyTo: '', 
+       subject: 'deployment finished', 
+       to: 'shakunsharma77@gmail.com' 
+    }
+}
