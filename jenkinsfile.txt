@@ -1,0 +1,32 @@
+node() {
+        stage('Clean Workspace') {
+            cleanWs()
+        }
+    stage('Pull Code') {
+        git branch: 'main', 
+        credentialsId: 'github-shakunss-a', 
+        url: 'https://github.com/shakunss-a/demorepo.git'
+    }   
+    stage('Build') {
+        
+    }
+    stage('Artifactory archiving') {
+        
+        echo "archiving completed"
+    }
+    stage('Deploy Code') {
+        sh '''
+        sudo cp /var/lib/jenkins/workspace/jenkinspipeline/* /var/www/html/.
+        
+        '''
+    }    
+    stage("Sending mail") {
+       mail bcc: '',
+       body: 'Deployment has been done', 
+       cc: '', 
+       from: '', 
+       replyTo: '', 
+       subject: 'deployment finished', 
+       to: 'shakunsharma77@gmail.com' 
+    }
+}
