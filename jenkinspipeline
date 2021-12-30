@@ -3,13 +3,13 @@ node() {
             cleanWs()
         }
     stage('Pull Code') {
-       git branch: 'main', 
-        credentialsId: 'github-shakunss-a',
+        git branch: 'main', 
+        credentialsId: 'github-shakunss-a', 
         url: 'https://github.com/shakunss-a/demorepo.git'
     }   
     stage(' Create Docker image') {
              sh '''
-                     docker build -t website .
+                     docker build -t node1 .
                '''
         
     }
@@ -19,8 +19,8 @@ node() {
                      chmod 772 login.sh
                      ./login.sh
                      
-                     docker tag website:latest 128728817910.dkr.ecr.us-east-2.amazonaws.com/website:latest
-                     docker push 128728817910.dkr.ecr.us-east-2.amazonaws.com/website:latest
+                     docker tag node1:latest 128728817910.dkr.ecr.us-east-2.amazonaws.com/node1:latest
+                     docker push 128728817910.dkr.ecr.us-east-2.amazonaws.com/node1:latest
                      
                      rm login.sh
                      
