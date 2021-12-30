@@ -19,8 +19,8 @@ node() {
                      chmod 772 login.sh
                      ./login.sh
                      
-                     docker tag node1:latest 128728817910.dkr.ecr.us-east-2.amazonaws.com/node1:latest
-                     docker push 128728817910.dkr.ecr.us-east-2.amazonaws.com/node1:latest
+                     docker tag node1:latest 128728817910.dkr.ecr.us-east-2.amazonaws.com/node1:v1
+                     docker push 128728817910.dkr.ecr.us-east-2.amazonaws.com/node1:v1
                      
                      rm login.sh
                      
