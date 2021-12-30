@@ -4,8 +4,8 @@ node() {
         }
     stage('Pull Code') {
         git branch: 'main', 
-        credentialsId: '0414c5af-e6b4-4f60-9035-0551c12c1c42', 
-        url: 'https://github.com/shakunss-a/mywebsite.git'
+        credentialsId: 'github-shakunss-a', 
+        url: 'https://github.com/shakunss-a/demorepo.git'
     }   
     stage('Build') {
         
